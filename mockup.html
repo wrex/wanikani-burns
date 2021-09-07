@@ -6,20 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wanikani Burns Progress</title>
   <style type="text/css">
+    .burn-progress-container {
+      display: flex;
+      align-items: center;
+    }
     label {
-      padding-right: 10px;
+      padding-right: 30px;
       font-size: 1.5rem;
     }
-    progress[value] {
+    meter {
       background-color: #f3f3f3;
-      border: 0;
-      height: 28px;
-      border-radius: 9px; 
+      width: 500px;
+      height: 58px;
     }
   </style>
 </head>
 <body>
-  <label for="Burns">Burned:</label>
-  <progress id="file" max="100" value="38"> 38% </progress>
+  <div class="burn-progress-container">
+    <label for="Burns">
+      <p>Burned</p> 
+      <p>3238 / 8995</p>
+    </label>
+    <meter id="file" max="100" value="38"> 38% </meter>
+    <div class="burn-progress-remaining">
+      <p>Reviewing: 2340</p>
+      <p>Unseen: 3455 (38 unseen)</p>
+    </div>
+  </div>
 </body>
 </html>
