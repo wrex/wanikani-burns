@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Burn Progress
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      1.0
 // @description  Wanikani dashboard extension to display progress toward burning all items
 // @author       Rex Walters (Rrwrex)
 // @include      /^https:\/\/(www|preview).wanikani.com\/(dashboard)?$/
@@ -48,11 +48,11 @@
     return assignments.srs_stage;
   }
 
+  // Calculate the total counts at each stage
   function determineRatio(items) {
     let itemsBySrs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((result, srs) => {
       result[srs] = {
         total: 0,
-        leech: 0,
       };
 
       return result;
@@ -154,12 +154,28 @@
     bpStyle.innerHTML = progressBarCSS;
     document.querySelector("head").append(bpStyle);
 
+    //  Free users only have access to a subset of items, so the totalItems count
+    //  will be much smaller for users without a subscription.
+    //
+    //  So display, e.g., "349 total free items" for free users
+    //  and "8995 total items" for paid users (or whatever the current numbers are)
+    let totalText = "";
+    options["Subscription Status"] === "free"
+      ? (totalText = `${totalItems} total free items`)
+      : (totalText = `${totalItems} total items`);
+
+    // Only show the burned item count if there are any
+    let seenText = "";
+    burnedItems > 0
+      ? (seenText = `${seenItems} seen (${burnedItems} burned)`)
+      : (seenText = `${seenItems} seen`);
+
     const progressBarHTML = `
     <div class="bp-bar" value="${totalItems}">
       <span class="bp-bar-burns" value="${burnedItems}">${burnedPercent}% burned</span>
       <span class="bp-bar-seen" value="${seenItems}">${seenPercent}% seen</span>
     </div>
-    <p>${totalItems} total items: ${seenItems} seen (${burnedItems} burned)</p>
+    <p>${totalText}: ${seenText}</p>
     `;
 
     //   Create a DIV to hold the progressbar
