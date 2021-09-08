@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Burn Progress
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Display progress toward burning all items
+// @version      0.4
+// @description  Wanikani dashboard extension to display progress toward burning all items
 // @author       Rex Walters (Rrwrex)
 // @include      /^https:\/\/(www|preview).wanikani.com\/(dashboard)?$/
 // @grant        none
@@ -29,12 +29,7 @@
   const config = {
     wk_items: {
       options: {
-        review_statistics: true,
         assignments: true,
-      },
-      filter: {
-        level: "1..+0",
-        srs: "1..8",
       },
     },
   };
@@ -105,7 +100,7 @@
     const progressBarCSS = `
       .burn-progress-container {
         box-sizing: border-box;
-        margin: 0 0 30px;
+        margin: 0;
         padding: 12px;
         text-align: right;
       }
