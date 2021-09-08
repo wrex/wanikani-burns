@@ -23,34 +23,45 @@
 
   const progressBarCSS = `
     .burn-progress-container {
-      width: 80rem;
+      box-sizing: border-box;
+      margin: 0 0 30px;
+      padding: 12px;
+      text-align: right;
     }
     .bp-bar {
-      height: 20px;
+      height: 36px;
       position: relative;
       background: #e0e0e0;
       border-radius: 25px;
-      padding: 10px;
-      box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+      box-shadow: inset 0px 2px 0 0 rgb(0 0 0 / 10%);
+      /* padding: 10px; */
+      vertical-align: middle;
     }
     .bp-bar > span {
       display: block;
+      float: left;
+      line-height: 36px;
+      color: white;
       height: 100%;
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-      background-color: rgb(43, 194, 83);
-      background-image: linear-gradient(
-        center bottom,
-        rgb(43, 194, 83) 37%,
-        rgb(84, 240, 84) 69%
-      );
-      box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
-        inset 0 -2px 6px rgba(0, 0, 0, 0.4);
       position: relative;
       overflow: hidden;
+      text-align: center;
+    }
+    span.bp-bar-burns {
       width: ${burnedPercent}%;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      background-color: hsla(41,96%,56%,1);
+    }
+    span.bp-bar-seen {
+      width: ${inProgressPercent}%;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      background-color: hsla(41,90%,70%,1);
     }
   `;
 
@@ -62,21 +73,16 @@
 
   const progressBarHTML = `
   <div class="bp-bar" value="${totalItems}">
-    <span class="bp-bar-burns" value="${burnedItems}"></span>
-    <!-- <span class="bp-bar-seen" value="${seenItems}"> 
-      ${((seenItems / totalItems) * 100).toFixed(1)}%
-    </span> -->
+    <span class="bp-bar-burns" value="${burnedItems}">${burnedPercent}% burned</span>
+    <span class="bp-bar-seen" value="${seenItems}">${seenPercent}% seen</span>
   </div>
-  <p>${seenItems} of ${totalItems} items seen (${burnedItems} burned)</p>
+  <p>${totalItems} total items: ${seenItems} seen (${burnedItems} burned)</p>
   `;
 
   //   Create a DIV to hold the progressbar
   const burnsBar = document.createElement("div");
   burnsBar.classList.add("burn-progress-container");
   burnsBar.innerHTML = progressBarHTML;
-
-  // Update the width of the burns
-  burnsBar.querySelector(".bp-bar-burns").style.width = `${burnedPercent}`;
 
   // Now add our new div at the top of the page before the progress and forecast section
   document.querySelector(".progress-and-forecast").before(burnsBar);
