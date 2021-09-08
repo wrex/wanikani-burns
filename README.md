@@ -1,29 +1,41 @@
-I'd like to add a visually **simple** "overall progress" bar on my dashboard. By "overall progress," I specifically mean the percentage of currently published items that I've burned. Something like this:
+This is the initial release of the Burn Progress userscript. I borrowed most of the actual logic from @Pep95 's Total Progress Bar 9 userscript, but I tried to simplify the display significantly (exposing fewer details and using the default WK styling).
 
-![Content mockup](./progress-bar.png)
+The script adds a gold-colored progress bar at the very top of the dashboard
+showing your overall progress toward memorizing items with Wanikani:
 
-> Data fields:
->
-> Burned `<a>` / `<b>`
-> Reviewing: `<c>`
-> Unseen: `<d>` (`<e>` unlocked)
->
-> `<a>` = count of reviewed items currently in stage 9
-> `<b>` = total number of (unhidden) published items on WaniKani
-> `<c>` = total number of items in stages 1 through 8
-> `<d>` = number of locked items not yet reviewed + current number of unreviewed but unlocked lessons
-> `<e>` = current number of unreviewed lessons
->
-> Bar graph shows `<a>` / `<b>` displayed as a percentage
+![burn-progess screenshot](./burn-progress-screenshot.png)
 
-Personally, I'm far less interested in knowing what _level_ I'm on than in how much kanji/vocabulary I've **learned**. To me, leveling up just unlocks more unseen items, so focusing on levels seems like focusing more on getting into college rather than graduating!
+The gold bar at the top indicates I’ve burned 36% of the 8,995 currently published items, and have “seen” (burned or am still in the process of reviewing) 62%.
 
-I know there are existing dashboard scripts and the like that will display everything I might ever want to know (and then some!), but I've been toying with the idea of trying to write what's hopefully a relatively simple script myself. The documentation for the API and WKOF is amazing, but I'm kinda allergic to javascript. I've no experience whatsoever with either (other than as a user).
+I’m currently at level 36 of 60 (or 60% “done”) which is pretty close to the “seen” value shown above, but I prefer to think of myself as only 36% “done” since I’ve only burned about a third of the total items on Wanikani.
 
-I thought I'd get feedback here first (either of the encouragement or "here be dragons" variety!). If there is something similar I could look at for ideas (or blatant theft) please let me know.
+Heads up!
+This is my very first userscript and has not been tested by anyone other than myself. It’s extremely likely I’ve screwed something up.
 
-Design thoughts:
+My strong advice is not to install this script until at least a few people have commented on this post without reporting any problems. I’ll update the script as problems are uncovered.
 
-The KISS principle applies: I just want a simple bar graph with no dialogs to edit preferences or whatever.
+You’ve been warned.
 
-I'd like it to be meaningful for users at any level, though. It would be silly to show "0/8995 Burned" for the first several months with new users. I think it should show "Guru'd" items for users on the early levels instead (replacing `<a>` with the number of items in stages 5-9 instead). When there are more items in stage 9 than in 5-8, it should switch to showing Burned.
+ Installation
+ Motivation
+ Design, implementation, and explaining the output
+ Bugs
+Thanks
+I’m particularly grateful to @Pep95, @Saimin, @Kumirei, and @rfindley for helping me create this script.
+
+I’m an only sporadic programmer and it took me a while to build up my chops again. I’d never have succeeded without “borrowing” code from my betters.
+
+I’d also like to give a shoutout to all the absolutely astonishing “free software” tools involved in building this:
+
+Visual Studio Code
+Git
+Github
+Tampermonkey
+Greasyfork
+MDN
+HTML/CSS/Javascript
+Wanikani API
+Wanikani Open Framework
+The fact that professional tools like these are freely available never ceases to amaze me.
+
+Finally, thanks to Koichi, the team, and the terrific community here for keeping me motivated to improve my Japanese!
