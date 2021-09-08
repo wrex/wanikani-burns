@@ -5,7 +5,6 @@
 // @description  Display progress toward burning all items
 // @author       Rex Walters (Rrwrex)
 // @include      /^https:\/\/(www|preview).wanikani.com\/(dashboard)?$/
-// @icon         https://www.google.com/s2/favicons?domain=wanikani.com
 // @grant        none
 // ==/UserScript==
 
