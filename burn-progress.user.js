@@ -66,6 +66,7 @@
     return itemsBySrs;
   }
 
+  // Finally, generate the html
   function createBar(itemsBySrs) {
     let totalItems =
       itemsBySrs[0].total +
@@ -125,8 +126,11 @@
       }
       span.bp-bar-burns {
         width: ${burnedPercent}%;
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
+        ${
+          burnedItems == seenItems
+            ? "border-top-right-radius: 25px; border-bottom-right-radius: 25px;"
+            : "border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+        }
         border-top-left-radius: 25px;
         border-bottom-left-radius: 25px;
         background-color: hsla(41,96%,56%,1);
@@ -135,8 +139,11 @@
         width: ${inProgressPercent}%;
         border-top-right-radius: 25px;
         border-bottom-right-radius: 25px;
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
+        ${
+          burnedItems > 0
+            ? "border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
+            : "border-top-left-radius: 25px; border-bottom-left-radius: 25px;"
+        }
         background-color: hsla(41,90%,70%,1);
       }
     `;
