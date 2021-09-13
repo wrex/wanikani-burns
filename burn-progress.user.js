@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Burn Progress
-// @namespace    bp
-// @version      1.1
+// @namespace    http://tampermonkey.net/
+// @version      1.2
 // @description  Wanikani dashboard extension to display progress toward burning all items
 // @author       Rex Walters (Rrwrex, rw [at] pobox.com)
 // @license      MIT https://opensource.org/licenses/mit-license.php
